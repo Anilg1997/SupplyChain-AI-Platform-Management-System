@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 import { PaymentsRoutingModule } from './payments-routing.module';
 import { PaymentsComponent } from './payments.component';
@@ -11,6 +12,7 @@ import { PaymentsComponent } from './payments.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     PaymentsRoutingModule
   ]
 })

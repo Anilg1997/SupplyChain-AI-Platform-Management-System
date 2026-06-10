@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 import { QualityRoutingModule } from './quality-routing.module';
 import { QualityComponent } from './quality.component';
@@ -11,6 +12,7 @@ import { QualityComponent } from './quality.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     QualityRoutingModule
   ]
 })

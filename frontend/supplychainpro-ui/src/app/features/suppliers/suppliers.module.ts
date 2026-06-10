@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 import { SuppliersRoutingModule } from './suppliers-routing.module';
 import { SuppliersComponent } from './suppliers.component';
@@ -11,6 +12,7 @@ import { SuppliersComponent } from './suppliers.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     SuppliersRoutingModule
   ]
 })

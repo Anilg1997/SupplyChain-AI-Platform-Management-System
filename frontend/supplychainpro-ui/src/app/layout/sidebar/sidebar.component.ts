@@ -15,7 +15,7 @@ interface NavItem {
 export class SidebarComponent {
   @Output() navigate = new EventEmitter<void>();
 
-  navItems: NavItem[] = [
+  allNavItems: NavItem[] = [
     { label: 'Dashboard', icon: 'dashboard', route: '/dashboard' },
     { label: 'Suppliers', icon: 'business', route: '/suppliers' },
     { label: 'Products', icon: 'inventory_2', route: '/products' },
@@ -36,6 +36,15 @@ export class SidebarComponent {
     { label: 'Analytics', icon: 'insights', route: '/analytics' },
     { label: 'Notifications', icon: 'notifications', route: '/notifications' },
   ];
+
+  filteredItems: NavItem[] = [...this.allNavItems];
+
+  filterItems(event: Event): void {
+    const query = (event.target as HTMLInputElement).value.toLowerCase();
+    this.filteredItems = this.allNavItems.filter(item =>
+      item.label.toLowerCase().includes(query)
+    );
+  }
 
   trackByRoute(_index: number, item: NavItem): string {
     return item.route;

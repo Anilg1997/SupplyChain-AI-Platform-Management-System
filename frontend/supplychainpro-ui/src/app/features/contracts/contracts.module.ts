@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 import { ContractsRoutingModule } from './contracts-routing.module';
 import { ContractsComponent } from './contracts.component';
@@ -11,6 +12,7 @@ import { ContractsComponent } from './contracts.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ContractsRoutingModule
   ]
 })

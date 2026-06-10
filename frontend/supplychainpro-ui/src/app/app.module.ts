@@ -9,8 +9,6 @@ import { AppComponent } from './app.component';
 
 // Layout
 import { LayoutModule } from './layout/layout.module';
-import { SidebarComponent } from './layout/sidebar/sidebar.component';
-import { HeaderComponent } from './layout/header/header.component';
 
 // Core
 import { AuthGuard } from './core/guards/auth.guard';
@@ -44,9 +42,7 @@ import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    SidebarComponent,
-    HeaderComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,

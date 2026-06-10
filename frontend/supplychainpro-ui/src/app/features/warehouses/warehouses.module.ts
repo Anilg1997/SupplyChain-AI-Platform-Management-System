@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedModule } from '../../shared/shared.module';
 
 import { WarehousesRoutingModule } from './warehouses-routing.module';
 import { WarehousesComponent } from './warehouses.component';
@@ -11,6 +12,7 @@ import { WarehousesComponent } from './warehouses.component';
   ],
   imports: [
     CommonModule,
+    SharedModule,
     WarehousesRoutingModule
   ]
 })
