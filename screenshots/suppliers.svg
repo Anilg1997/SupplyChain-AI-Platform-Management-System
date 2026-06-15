@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'Inter', 'Segoe UI', sans-serif">
+  <rect width="1200" height="750" fill="#f5f5f5"/>
+  <!-- Header -->
+  <rect width="1200" height="56" fill="white"/>
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="8" y="10" width="36" height="36" rx="8" fill="#1976D2"/>
+  <text x="14" y="34" font-size="14" fill="white" font-weight="bold">📦</text>
+  <text x="52" y="34" font-size="15" fill="#1a1a2e" font-weight="500">SupplyChain Pro</text>
+  <!-- Sidebar -->
+  <rect x="0" y="56" width="260" height="694" fill="white"/>
+  <line x1="259" y1="56" x2="259" y2="750" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="8" y="62" width="244" height="40" rx="8" fill="transparent"/>
+  <text x="36" y="88" font-size="13" fill="#555">📊 Dashboard</text>
+  <rect x="8" y="108" width="244" height="40" rx="8" fill="#E3F2FD"/>
+  <text x="36" y="134" font-size="13" fill="#1976D2" font-weight="500">🏭 Suppliers</text>
+  <!-- Main -->
+  <text x="285" y="92" font-size="22" fill="#1a1a2e" font-weight="600">Suppliers</text>
+  <text x="285" y="114" font-size="13" fill="#666">Manage your supplier relationships</text>
+  <!-- Add button -->
+  <rect x="1060" y="80" width="130" height="36" rx="8" fill="#1976D2"/>
+  <text x="1080" y="103" font-size="13" fill="white" font-weight="500">+ Add Supplier</text>
+  <!-- Filter bar -->
+  <rect x="285" y="135" width="900" height="48" rx="10" fill="white" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
+  <rect x="300" y="148" width="200" height="28" rx="6" fill="white" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="316" y="167" font-size="11" fill="#666">🔍 Search suppliers...</text>
+  <rect x="512" y="148" width="140" height="28" rx="6" fill="white" stroke="#e0e0e0" stroke-width="1"/>
+  <text x="528" y="167" font-size="11" fill="#666">All Status</text>
+  <polygon points="640,164 644,158 648,164" fill="#666"/>
+  <!-- Table -->
+  <rect x="285" y="195" width="900" height="500" rx="12" fill="white" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
+  <rect x="301" y="220" width="868" height="36" fill="#F5F5F5"/>
+  <text x="312" y="243" font-size="11" fill="#666" font-weight="600">Name</text>
+  <text x="460" y="243" font-size="11" fill="#666" font-weight="600">Category</text>
+  <text x="600" y="243" font-size="11" fill="#666" font-weight="600">Contact</text>
+  <text x="760" y="243" font-size="11" fill="#666" font-weight="600">Email</text>
+  <text x="920" y="243" font-size="11" fill="#666" font-weight="600">Status</text>
+  <text x="1080" y="243" font-size="11" fill="#666" font-weight="600">Rating</text>
+  <!-- Row 1 -->
+  <rect x="301" y="256" width="868" height="44" fill="transparent"/>
+  <text x="312" y="282" font-size="13" fill="#1976D2" font-weight="500">TechSupply Co.</text>
+  <text x="460" y="282" font-size="12" fill="#333">Electronics</text>
+  <text x="600" y="282" font-size="12" fill="#333">Ravi Kumar</text>
+  <text x="760" y="282" font-size="12" fill="#333">ravi@techsupply.com</text>
+  <rect x="902" y="268" width="56" height="22" rx="6" fill="#E8F5E9"/>
+  <text x="916" y="284" font-size="10" fill="#388E3C" font-weight="600">Active</text>
+  <text x="1080" y="282" font-size="12" fill="#333">★★★★☆</text>
+  <line x1="301" y1="300" x2="1169" y2="300" stroke="#F5F5F5" stroke-width="1"/>
+  <!-- Row 2 -->
+  <rect x="301" y="300" width="868" height="44" fill="transparent"/>
+  <text x="312" y="326" font-size="13" fill="#1976D2" font-weight="500">RawMaterials Inc.</text>
+  <text x="460" y="326" font-size="12" fill="#333">Raw Materials</text>
+  <text x="600" y="326" font-size="12" fill="#333">Priya Sharma</text>
+  <text x="760" y="326" font-size="12" fill="#333">priya@rawmat.com</text>
+  <rect x="902" y="312" width="56" height="22" rx="6" fill="#E8F5E9"/>
+  <text x="916" y="328" font-size="10" fill="#388E3C" font-weight="600">Active</text>
+  <text x="1080" y="326" font-size="12" fill="#333">★★★★★</text>
+  <!-- Row 3 -->
+  <rect x="301" y="344" width="868" height="44" fill="transparent"/>
+  <text x="312" y="370" font-size="13" fill="#1976D2" font-weight="500">PackPro Solutions</text>
+  <text x="460" y="370" font-size="12" fill="#333">Packaging</text>
+  <text x="600" y="370" font-size="12" fill="#333">Amit Patel</text>
+  <text x="760" y="370" font-size="12" fill="#333">amit@packpro.com</text>
+  <rect x="898" y="356" width="64" height="22" rx="6" fill="#FEF9E7"/>
+  <text x="912" y="372" font-size="10" fill="#F39C12" font-weight="600">Pending</text>
+  <text x="1080" y="370" font-size="12" fill="#333">★★★☆☆</text>
+</svg>

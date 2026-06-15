@@ -6,8 +6,25 @@
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.3.5-%236DB33F?logo=springboot)](https://spring.io/projects/spring-boot)
 [![Angular](https://img.shields.io/badge/Angular-18-%23DD0031?logo=angular)](https://angular.dev/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-%234169E1?logo=postgresql)](https://www.postgresql.org/)
+[![Kafka](https://img.shields.io/badge/Messaging-Apache%20Kafka-231F20)](https://kafka.apache.org/)
+[![Redis](https://img.shields.io/badge/Cache-Redis-DC382D)](https://redis.io/)
 [![Docker](https://img.shields.io/badge/Docker-Compose-%232496ED?logo=docker)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+
+---
+
+## 📸 Screenshots
+
+| Dashboard | Suppliers |
+|:---:|:---:|
+| ![Dashboard](screenshots/dashboard.svg) | ![Suppliers](screenshots/suppliers.svg) |
+
+| Inventory | Shipments & Tracking |
+|:---:|:---:|
+| ![Inventory](screenshots/inventory.svg) | ![Tracking](screenshots/shipments.svg) |
+
+| Login |
+|:---:|
+| ![Login](screenshots/login.svg) |
 
 ---
 

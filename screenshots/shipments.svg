@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="'Inter', 'Segoe UI', sans-serif">
+  <rect width="1200" height="750" fill="#f5f5f5"/>
+  <rect width="1200" height="56" fill="white"/>
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="8" y="10" width="36" height="36" rx="8" fill="#1976D2"/>
+  <text x="14" y="34" font-size="14" fill="white" font-weight="bold">📦</text>
+  <text x="52" y="34" font-size="15" fill="#1a1a2e" font-weight="500">SupplyChain Pro</text>
+  <rect x="0" y="56" width="260" height="694" fill="white"/>
+  <line x1="259" y1="56" x2="259" y2="750" stroke="#e0e0e0" stroke-width="1"/>
+  <rect x="8" y="62" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="196" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="240" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="284" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="328" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="372" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="416" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="460" width="244" height="40" rx="8" fill="transparent"/>
+  <rect x="8" y="504" width="244" height="40" rx="8" fill="transparent"/>
+  <text x="36" y="530" font-size="13" fill="#555">🚚 Shipments</text>
+  <rect x="8" y="548" width="244" height="40" rx="8" fill="#E3F2FD"/>
+  <text x="36" y="574" font-size="13" fill="#1976D2" font-weight="500">📍 Tracking</text>
+  <!-- Main -->
+  <text x="285" y="92" font-size="22" fill="#1a1a2e" font-weight="600">Tracking</text>
+  <text x="285" y="114" font-size="13" fill="#666">Real-time shipment tracking and status updates</text>
+  <!-- Tracking Stats -->
+  <rect x="285" y="135" width="220" height="70" rx="10" fill="white" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
+  <text x="301" y="160" font-size="12" fill="#666">In Transit</text>
+  <text x="301" y="185" font-size="20" fill="#1976D2" font-weight="700">42</text>
+  <rect x="520" y="135" width="220" height="70" rx="10" fill="white" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
+  <text x="536" y="160" font-size="12" fill="#666">Delivered Today</text>
+  <text x="536" y="185" font-size="20" fill="#388E3C" font-weight="700">28</text>
+  <rect x="755" y="135" width="220" height="70" rx="10" fill="white" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
+  <text x="771" y="160" font-size="12" fill="#666">Delayed</text>
+  <text x="771" y="185" font-size="20" fill="#D32F2F" font-weight="700">5</text>
+  <!-- Tracking Table -->
+  <rect x="285" y="225" width="900" height="480" rx="12" fill="white" filter="drop-shadow(0 1px 3px rgba(0,0,0,0.08))"/>
+  <rect x="301" y="250" width="868" height="36" fill="#F5F5F5"/>
+  <text x="312" y="273" font-size="11" fill="#666" font-weight="600">Tracking #</text>
+  <text x="440" y="273" font-size="11" fill="#666" font-weight="600">Origin</text>
+  <text x="570" y="273" font-size="11" fill="#666" font-weight="600">Destination</text>
+  <text x="720" y="273" font-size="11" fill="#666" font-weight="600">Status</text>
+  <text x="850" y="273" font-size="11" fill="#666" font-weight="600">ETA</text>
+  <text x="980" y="273" font-size="11" fill="#666" font-weight="600">Carrier</text>
+  <!-- Row 1 -->
+  <rect x="301" y="286" width="868" height="44" fill="transparent"/>
+  <text x="312" y="312" font-size="12" fill="#1976D2" font-weight="500">SHP-2024-029</text>
+  <text x="440" y="312" font-size="12" fill="#333">Mumbai</text>
+  <text x="570" y="312" font-size="12" fill="#333">Delhi</text>
+  <rect x="702" y="298" width="64" height="22" rx="6" fill="#E8F5E9"/>
+  <text x="716" y="314" font-size="10" fill="#388E3C" font-weight="600">Delivered</text>
+  <text x="850" y="312" font-size="12" fill="#333">12 Jun</text>
+  <text x="980" y="312" font-size="12" fill="#333">BlueDart</text>
+  <!-- Row 2 -->
+  <rect x="301" y="330" width="868" height="44" fill="transparent"/>
+  <text x="312" y="356" font-size="12" fill="#1976D2" font-weight="500">SHP-2024-030</text>
+  <text x="440" y="356" font-size="12" fill="#333">Chennai</text>
+  <text x="570" y="356" font-size="12" fill="#333">Bangalore</text>
+  <rect x="696" y="342" width="76" height="22" rx="6" fill="#E3F2FD"/>
+  <text x="716" y="358" font-size="10" fill="#1976D2" font-weight="600">In Transit</text>
+  <text x="850" y="356" font-size="12" fill="#333">14 Jun</text>
+  <text x="980" y="356" font-size="12" fill="#333">DTDC</text>
+  <!-- Row 3 -->
+  <rect x="301" y="374" width="868" height="44" fill="transparent"/>
+  <text x="312" y="400" font-size="12" fill="#1976D2" font-weight="500">SHP-2024-031</text>
+  <text x="440" y="400" font-size="12" fill="#333">Kolkata</text>
+  <text x="570" y="400" font-size="12" fill="#333">Pune</text>
+  <rect x="700" y="386" width="68" height="22" rx="6" fill="#FFF3E0"/>
+  <text x="716" y="402" font-size="10" fill="#F57C00" font-weight="600">Dispatched</text>
+  <text x="850" y="400" font-size="12" fill="#333">15 Jun</text>
+  <text x="980" y="400" font-size="12" fill="#333">Delhivery</text>
+</svg>
