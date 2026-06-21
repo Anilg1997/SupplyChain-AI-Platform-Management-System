@@ -1,10 +1,10 @@
 # ============================================
-# SupplyChain Pro - Shared Application Config
+# SupplyChain AI Platform - Shared Application Config
 # ============================================
 
 spring:
   application:
-    name: supplychainpro
+    name: supplychainai
   cloud:
     discovery:
       enabled: true
@@ -23,9 +23,9 @@ spring:
     tracing:
       propagation:
         type: b3
-    export:
-      zipkin:
-        enabled: true
+      export:
+        zipkin:
+          enabled: true
 
 # Eureka client for all services
 eureka:
@@ -74,9 +74,11 @@ resilience4j:
 # Logging
 logging:
   level:
-    com.supplychainpro: INFO
+    com.supplychainai: INFO
     org.springframework.cloud: INFO
     org.springframework.kafka: WARN
+    org.springframework.ai: DEBUG
+    dev.langchain4j: DEBUG
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
 
@@ -88,6 +90,89 @@ kafka:
 
 # JWT common config
 jwt:
-  secret: ${JWT_SECRET:SupplyChainPro_JWT_Min32CharSecret_2024}
+  secret: ${JWT_SECRET:SupplyChainAI_JWT_Min32CharSecret_2024}
   access-token-expiration: 900000  # 15 minutes
   refresh-token-expiration: 604800000  # 7 days
+
+# AI/LLM Configuration (LangChain4j + Ollama)
+spring:
+  ai:
+    ollama:
+      base-url: ${OLLAMA_BASE_URL:http://ollama:11434}
+      chat:
+        model: ${OLLAMA_CHAT_MODEL:llama3.1}
+        options:
+          temperature: 0.7
+          top-p: 0.9
+      embedding:
+        model: ${OLLAMA_EMBEDDING_MODEL:nomic-embed-text}
+        options:
+          temperature: 0.0
+
+# LangChain4j Configuration
+langchain4j:
+  ollama:
+    base-url: ${OLLAMA_BASE_URL:http://ollama:11434}
+    chat-model: ${OLLAMA_CHAT_MODEL:llama3.1}
+    embedding-model: ${OLLAMA_EMBEDDING_MODEL:nomic-embed-text}
+    timeout: 60s
+    max-retries: 3
+  rag:
+    enabled: true
+    retriever:
+      max-results: 5
+      min-score: 0.7
+    content-retriever:
+      max-tokens: 4000
+    query-transformer:
+      enabled: true
+
+# PGVector Configuration
+pgvector:
+  database: ${PGVECTOR_DATABASE:supplychainai}
+  username: ${PGVECTOR_USERNAME:postgres}
+  password: ${PGVECTOR_PASSWORD:SupplyChain@2024}
+  host: postgres
+  port: 5432
+  vector-dimension: 768
+  index-type: HNSW
+  distance-type: COSINE_DISTANCE
+
+# MCP (Model Context Protocol) Configuration
+mcp:
+  client:
+    enabled: true
+    servers:
+      filesystem:
+        enabled: ${MCP_SERVER_FILESYSTEM_ENABLED:true}
+        command: npx
+        args: ["-y", "@modelcontextprotocol/server-filesystem", "/workspace"]
+      git:
+        enabled: ${MCP_SERVER_GIT_ENABLED:true}
+        command: npx
+        args: ["-y", "@modelcontextprotocol/server-git", "--repository", "/workspace"]
+      postgres:
+        enabled: ${MCP_SERVER_POSTGRES_ENABLED:true}
+        command: npx
+        args: ["-y", "@modelcontextprotocol/server-postgres", "postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}"]
+      kafka:
+        enabled: ${MCP_SERVER_KAFKA_ENABLED:true}
+        command: npx
+        args: ["-y", "@modelcontextprotocol/server-kafka", "${KAFKA_BOOTSTRAP_SERVERS}"]
+
+# Admin Service Configuration
+admin:
+  ai:
+    enabled: true
+    rag-integration: true
+    mcp-integration: true
+  monitoring:
+    services-health-check-interval: 30s
+    metrics-retention-days: 30
+  automation:
+    enabled: true
+    scheduled-tasks:
+      - name: "daily-rag-index-rebuild"
+        cron: "0 2 * * *"
+      - name: "weekly-model-evaluation"
+        cron: "0 3 * * 0"

@@ -3,14 +3,14 @@ services:
   # INFRASTRUCTURE SERVICES
   # ==========================================
   postgres:
-    image: postgres:16-alpine
-    container_name: scp-postgres
+    image: pgvector/pgvector:pg16
+    container_name: scai-postgres
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-SupplyChain@2024}
-      POSTGRES_DB: ${POSTGRES_DB:-supplychainpro}
+      POSTGRES_DB: ${POSTGRES_DB:-supplychainai}
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./infra/postgres/init-schemas.sql:/docker-entrypoint-initdb.d/init-schemas.sql
@@ -19,10 +19,24 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    command: >
+      postgres -c shared_preload_libraries=vector
+      -c max_connections=200
+      -c shared_buffers=256MB
+      -c effective_cache_size=1GB
+      -c maintenance_work_mem=64MB
+      -c checkpoint_completion_target=0.9
+      -c wal_buffers=16MB
+      -c default_statistics_target=100
+      -c random_page_cost=1.1
+      -c effective_io_concurrency=200
+      -c work_mem=4MB
+      -c min_wal_size=1GB
+      -c max_wal_size=4GB
 
   mongodb:
     image: mongo:7
-    container_name: scp-mongodb
+    container_name: scai-mongodb
     ports:
       - "${MONGO_PORT:-27017}:27017"
     environment:
@@ -38,7 +52,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: scp-redis
+    container_name: scai-redis
     ports:
       - "${REDIS_PORT:-6379}:6379"
     command: redis-server --requirepass ${REDIS_PASSWORD:-Redis@2024}
@@ -50,9 +64,33 @@ services:
       timeout: 5s
       retries: 5
 
+  ollama:
+    image: ollama/ollama:latest
+    container_name: scai-ollama
+    ports:
+      - "${OLLAMA_PORT:-11434}:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+    environment:
+      OLLAMA_HOST: 0.0.0.0
+      OLLAMA_ORIGINS: "*"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.6.0
-    container_name: scp-zookeeper
+    container_name: scai-zookeeper
     ports:
       - "2181:2181"
     environment:
@@ -66,7 +104,7 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka:7.6.0
-    container_name: scp-kafka
+    container_name: scai-kafka
     ports:
       - "9092:9092"
       - "29092:29092"
@@ -89,7 +127,7 @@ services:
 
   zipkin:
     image: openzipkin/zipkin:latest
-    container_name: scp-zipkin
+    container_name: scai-zipkin
     ports:
       - "${ZIPKIN_PORT:-9411}:9411"
     healthcheck:
@@ -100,7 +138,7 @@ services:
 
   prometheus:
     image: prom/prometheus:latest
-    container_name: scp-prometheus
+    container_name: scai-prometheus
     ports:
       - "${PROMETHEUS_PORT:-9090}:9090"
     volumes:
@@ -114,7 +152,7 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: scp-grafana
+    container_name: scai-grafana
     ports:
       - "${GRAFANA_PORT:-3000}:3000"
     environment:
@@ -127,7 +165,7 @@ services:
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
-    container_name: scp-kafka-ui
+    container_name: scai-kafka-ui
     ports:
       - "${KAFKA_UI_PORT:-8090}:8080"
     environment:
@@ -139,7 +177,7 @@ services:
 
   mongo-express:
     image: mongo-express:latest
-    container_name: scp-mongo-express
+    container_name: scai-mongo-express
     ports:
       - "${MONGO_EXPRESS_PORT:-8091}:8081"
     environment:
@@ -152,11 +190,11 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: scp-pgadmin
+    container_name: scai-pgadmin
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@supplychainpro.com}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@supplychainai.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-SupplyChain@2024}
     depends_on:
       postgres:
@@ -169,7 +207,7 @@ services:
     build:
       context: ./backend/service-registry
       dockerfile: Dockerfile
-    container_name: scp-service-registry
+    container_name: scai-service-registry
     ports:
       - "8761:8761"
     environment:
@@ -185,7 +223,7 @@ services:
     build:
       context: .
       dockerfile: backend/config-server/Dockerfile
-    container_name: scp-config-server
+    container_name: scai-config-server
     ports:
       - "8888:8888"
     environment:
@@ -204,7 +242,7 @@ services:
     build:
       context: ./backend/api-gateway
       dockerfile: Dockerfile
-    container_name: scp-api-gateway
+    container_name: scai-api-gateway
     ports:
       - "8080:8080"
     environment:
@@ -225,7 +263,7 @@ services:
     build:
       context: ./backend/auth-service
       dockerfile: Dockerfile
-    container_name: scp-auth-service
+    container_name: scai-auth-service
     ports:
       - "8081:8081"
     environment:
@@ -248,7 +286,7 @@ services:
     build:
       context: ./backend/user-service
       dockerfile: Dockerfile
-    container_name: scp-user-service
+    container_name: scai-user-service
     ports:
       - "8082:8082"
     environment:
@@ -271,7 +309,7 @@ services:
     build:
       context: ./backend/supplier-service
       dockerfile: Dockerfile
-    container_name: scp-supplier-service
+    container_name: scai-supplier-service
     ports:
       - "8083:8083"
     environment:
@@ -294,7 +332,7 @@ services:
     build:
       context: ./backend/purchase-requisition-service
       dockerfile: Dockerfile
-    container_name: scp-purchase-requisition-service
+    container_name: scai-purchase-requisition-service
     ports:
       - "8084:8084"
     environment:
@@ -315,7 +353,7 @@ services:
     build:
       context: ./backend/purchase-order-service
       dockerfile: Dockerfile
-    container_name: scp-purchase-order-service
+    container_name: scai-purchase-order-service
     ports:
       - "8085:8085"
     environment:
@@ -336,7 +374,7 @@ services:
     build:
       context: ./backend/rfq-service
       dockerfile: Dockerfile
-    container_name: scp-rfq-service
+    container_name: scai-rfq-service
     ports:
       - "8086:8086"
     environment:
@@ -357,7 +395,7 @@ services:
     build:
       context: ./backend/contract-service
       dockerfile: Dockerfile
-    container_name: scp-contract-service
+    container_name: scai-contract-service
     ports:
       - "8087:8087"
     environment:
@@ -378,7 +416,7 @@ services:
     build:
       context: ./backend/product-catalog-service
       dockerfile: Dockerfile
-    container_name: scp-product-catalog-service
+    container_name: scai-product-catalog-service
     ports:
       - "8088:8088"
     environment:
@@ -397,7 +435,7 @@ services:
     build:
       context: ./backend/inventory-service
       dockerfile: Dockerfile
-    container_name: scp-inventory-service
+    container_name: scai-inventory-service
     ports:
       - "8089:8089"
     environment:
@@ -420,7 +458,7 @@ services:
     build:
       context: ./backend/warehouse-service
       dockerfile: Dockerfile
-    container_name: scp-warehouse-service
+    container_name: scai-warehouse-service
     ports:
       - "8900:8900"
     environment:
@@ -441,7 +479,7 @@ services:
     build:
       context: ./backend/order-service
       dockerfile: Dockerfile
-    container_name: scp-order-service
+    container_name: scai-order-service
     ports:
       - "8091:8091"
     environment:
@@ -462,7 +500,7 @@ services:
     build:
       context: ./backend/return-service
       dockerfile: Dockerfile
-    container_name: scp-return-service
+    container_name: scai-return-service
     ports:
       - "8092:8092"
     environment:
@@ -483,7 +521,7 @@ services:
     build:
       context: ./backend/shipment-service
       dockerfile: Dockerfile
-    container_name: scp-shipment-service
+    container_name: scai-shipment-service
     ports:
       - "8093:8093"
     environment:
@@ -504,7 +542,7 @@ services:
     build:
       context: ./backend/route-service
       dockerfile: Dockerfile
-    container_name: scp-route-service
+    container_name: scai-route-service
     ports:
       - "8094:8094"
     environment:
@@ -523,7 +561,7 @@ services:
     build:
       context: ./backend/tracking-service
       dockerfile: Dockerfile
-    container_name: scp-tracking-service
+    container_name: scai-tracking-service
     ports:
       - "8095:8095"
     environment:
@@ -544,7 +582,7 @@ services:
     build:
       context: ./backend/quality-service
       dockerfile: Dockerfile
-    container_name: scp-quality-service
+    container_name: scai-quality-service
     ports:
       - "8096:8096"
     environment:
@@ -567,7 +605,7 @@ services:
     build:
       context: ./backend/quarantine-service
       dockerfile: Dockerfile
-    container_name: scp-quarantine-service
+    container_name: scai-quarantine-service
     ports:
       - "8097:8097"
     environment:
@@ -588,7 +626,7 @@ services:
     build:
       context: ./backend/forecast-service
       dockerfile: Dockerfile
-    container_name: scp-forecast-service
+    container_name: scai-forecast-service
     ports:
       - "8098:8098"
     environment:
@@ -609,7 +647,7 @@ services:
     build:
       context: ./backend/planning-service
       dockerfile: Dockerfile
-    container_name: scp-planning-service
+    container_name: scai-planning-service
     ports:
       - "8099:8099"
     environment:
@@ -628,7 +666,7 @@ services:
     build:
       context: ./backend/invoice-service
       dockerfile: Dockerfile
-    container_name: scp-invoice-service
+    container_name: scai-invoice-service
     ports:
       - "8100:8100"
     environment:
@@ -649,7 +687,7 @@ services:
     build:
       context: ./backend/payment-service
       dockerfile: Dockerfile
-    container_name: scp-payment-service
+    container_name: scai-payment-service
     ports:
       - "8101:8101"
     environment:
@@ -670,7 +708,7 @@ services:
     build:
       context: ./backend/cost-service
       dockerfile: Dockerfile
-    container_name: scp-cost-service
+    container_name: scai-cost-service
     ports:
       - "8102:8102"
     environment:
@@ -689,7 +727,7 @@ services:
     build:
       context: ./backend/supplier-portal-service
       dockerfile: Dockerfile
-    container_name: scp-supplier-portal-service
+    container_name: scai-supplier-portal-service
     ports:
       - "8103:8103"
     environment:
@@ -712,7 +750,7 @@ services:
     build:
       context: ./backend/report-service
       dockerfile: Dockerfile
-    container_name: scp-report-service
+    container_name: scai-report-service
     ports:
       - "8104:8104"
     environment:
@@ -733,7 +771,7 @@ services:
     build:
       context: ./backend/analytics-service
       dockerfile: Dockerfile
-    container_name: scp-analytics-service
+    container_name: scai-analytics-service
     ports:
       - "8105:8105"
     environment:
@@ -754,7 +792,7 @@ services:
     build:
       context: ./backend/notification-service
       dockerfile: Dockerfile
-    container_name: scp-notification-service
+    container_name: scai-notification-service
     ports:
       - "8106:8106"
     environment:
@@ -777,7 +815,7 @@ services:
     build:
       context: ./backend/audit-service
       dockerfile: Dockerfile
-    container_name: scp-audit-service
+    container_name: scai-audit-service
     ports:
       - "8107:8107"
     environment:
@@ -798,7 +836,7 @@ services:
     build:
       context: ./backend/search-service
       dockerfile: Dockerfile
-    container_name: scp-search-service
+    container_name: scai-search-service
     ports:
       - "8108:8108"
     environment:
@@ -813,13 +851,114 @@ services:
       retries: 10
       start_period: 45s
 
+  # ==========================================
+  # AI & AGENTIC SERVICES
+  # ==========================================
+  ai-rag-service:
+    build:
+      context: ./backend/ai-rag-service
+      dockerfile: Dockerfile
+    container_name: scai-ai-rag-service
+    ports:
+      - "8109:8109"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      OLLAMA_BASE_URL: http://ollama:11434
+      SPRING_AI_OLLAMA_BASE_URL: http://ollama:11434
+      SPRING_AI_OLLAMA_CHAT_MODEL: llama3.1
+      SPRING_AI_OLLAMA_EMBEDDING_MODEL: nomic-embed-text
+      PGVECTOR_DATABASE: supplychainai
+      PGVECTOR_USERNAME: postgres
+      PGVECTOR_PASSWORD: SupplyChain@2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8109/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  mcp-service:
+    build:
+      context: ./backend/mcp-service
+      dockerfile: Dockerfile
+    container_name: scai-mcp-service
+    ports:
+      - "8110:8110"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      MCP_SERVER_FILESYSTEM_ENABLED: "true"
+      MCP_SERVER_GIT_ENABLED: "true"
+      MCP_SERVER_POSTGRES_ENABLED: "true"
+      MCP_SERVER_KAFKA_ENABLED: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8110/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 45s
+
+  admin-service:
+    build:
+      context: ./backend/admin-service
+      dockerfile: Dockerfile
+    container_name: scai-admin-service
+    ports:
+      - "8111:8111"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      service-registry:
+        condition: service_healthy
+      config-server:
+        condition: service_healthy
+      ai-rag-service:
+        condition: service_healthy
+      mcp-service:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8111/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
 volumes:
   postgres-data:
   mongo-data:
   redis-data:
   prometheus-data:
   grafana-data:
+  ollama-data:
 
 networks:
   default:
-    name: scp-network
+    name: scai-network
+

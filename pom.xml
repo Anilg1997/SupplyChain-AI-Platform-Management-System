@@ -11,12 +11,12 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.supplychainpro</groupId>
-    <artifactId>supplychainpro-platform</artifactId>
+    <groupId>com.supplychainai</groupId>
+    <artifactId>supplychain-ai-platform</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>SupplyChain Pro Platform</name>
-    <description>Enterprise Supply Chain Management Platform</description>
+    <name>SupplyChain AI Platform</name>
+    <description>AI-Enhanced Enterprise Supply Chain Management Platform with RAG, MCP, and Agentic Workflows</description>
 
     <modules>
         <module>backend/service-registry</module>
@@ -50,6 +50,9 @@
         <module>backend/notification-service</module>
         <module>backend/audit-service</module>
         <module>backend/search-service</module>
+        <module>backend/ai-rag-service</module>
+        <module>backend/mcp-service</module>
+        <module>backend/admin-service</module>
     </modules>
 
     <properties>
@@ -67,6 +70,11 @@
         <testcontainers.version>1.20.1</testcontainers.version>
         <mapstruct.version>1.5.5.Final</mapstruct.version>
         <jjwt.version>0.12.6</jjwt.version>
+        <!-- AI/LLM Dependencies -->
+        <langchain4j.version>0.31.1</langchain4j.version>
+        <spring-ai.version>1.0.0-M4</spring-ai.version>
+        <pgvector.version>0.1.8</pgvector.version>
+        <ollama.version>0.31.1</ollama.version>
     </properties>
 
     <dependencyManagement>
@@ -178,6 +186,56 @@
                 <artifactId>mongodb</artifactId>
                 <version>${testcontainers.version}</version>
             </dependency>
+            <!-- AI/LLM Dependencies -->
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-bom</artifactId>
+                <version>${langchain4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-spring-boot-starter</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-ollama</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-pgvector</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-easy-rag</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-bom</artifactId>
+                <version>${spring-ai.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-ollama-spring-boot-starter</artifactId>
+                <version>${spring-ai.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.ai</groupId>
+                <artifactId>spring-ai-vector-store-pgvector</artifactId>
+                <version>${spring-ai.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>pgvector</artifactId>
+                <version>${pgvector.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -206,3 +264,65 @@
         </plugins>
     </build>
 </project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
