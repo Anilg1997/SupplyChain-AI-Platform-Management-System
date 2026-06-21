@@ -111,7 +111,7 @@ curl -X GET http://localhost:8091/api/orders
 
 ### 5.1 Angular App
 ```bash
-cd frontend/supplychainpro-ui
+cd frontend/supplychainai-ui
 npm install
 ng serve --port 4200
 

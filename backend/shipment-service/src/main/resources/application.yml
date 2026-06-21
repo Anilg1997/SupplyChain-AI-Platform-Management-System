@@ -5,7 +5,7 @@ spring:
   application:
     name: shipment-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/supplychainpro?currentSchema=logistics_schema
+    url: jdbc:postgresql://postgres:5432/supplychainai?currentSchema=logistics_schema
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:SupplyChain@2024}
   jpa:
@@ -36,4 +36,4 @@ management:
 
 logging:
   level:
-    com.supplychainpro.shipment: DEBUG
+    com.supplychainai.shipment: DEBUG

@@ -5,7 +5,7 @@ spring:
   application:
     name: quarantine-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/supplychainpro?currentSchema=quality_schema
+    url: jdbc:postgresql://postgres:5432/supplychainai?currentSchema=quality_schema
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:SupplyChain@2024}
   jpa:
@@ -36,4 +36,4 @@ management:
 
 logging:
   level:
-    com.supplychainpro.quarantine: DEBUG
+    com.supplychainai.quarantine: DEBUG

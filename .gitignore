@@ -50,13 +50,13 @@ nb-configuration.xml
 Thumbs.db
 
 # === Angular ===
-frontend/supplychainpro-ui/node_modules/
-frontend/supplychainpro-ui/dist/
-frontend/supplychainpro-ui/.angular/
-frontend/supplychainpro-ui/.sass-cache/
-frontend/supplychainpro-ui/coverage/
-frontend/supplychainpro-ui/.env.local
-frontend/supplychainpro-ui/.env.*.local
+frontend/supplychainai-ui/node_modules/
+frontend/supplychainai-ui/dist/
+frontend/supplychainai-ui/.angular/
+frontend/supplychainai-ui/.sass-cache/
+frontend/supplychainai-ui/coverage/
+frontend/supplychainai-ui/.env.local
+frontend/supplychainai-ui/.env.*.local
 
 # === Docker ===
 docker-compose.override.yml

@@ -1,0 +1,15 @@
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr;
+  }
+
+  mat-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a2e;
+  }
+}

@@ -90,7 +90,7 @@ else { Write-Host "  ✗ Missing AI configs: $($missingAi -join ', ')" -Foregrou
 
 # 7. Verify frontend
 Write-Host "[7/8] Verifying frontend..." -ForegroundColor Yellow
-$frontendChecks = @("frontend\supplychainai-ui", "frontend\supplychainpro-ui")
+$frontendChecks = @("frontend\supplychainai-ui", "frontend\supplychainai-ui")
 $feOk = $false
 foreach ($f in $frontendChecks) {
     if (Test-Path "$f\package.json") { $feOk = $true }
@@ -117,7 +117,7 @@ Write-Host "========================================`n" -ForegroundColor Cyan
 
 Write-Host "To run the full application:" -ForegroundColor White
 Write-Host "  1. docker-compose up -d" -ForegroundColor Gray
-Write-Host "  2. cd frontend/supplychainpro-ui && npm install && ng serve" -ForegroundColor Gray
+Write-Host "  2. cd frontend/supplychainai-ui && npm install && ng serve" -ForegroundColor Gray
 Write-Host "  3. Open http://localhost:4200" -ForegroundColor Gray
 Write-Host "  4. Login with admin / admin" -ForegroundColor Gray
 Write-Host "`nTo verify AI services:" -ForegroundColor White

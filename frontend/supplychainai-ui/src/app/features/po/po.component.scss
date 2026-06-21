@@ -1,0 +1,86 @@
+.po-container {
+  padding: 24px;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    .search-field {
+      flex: 1;
+    }
+
+    .status-filter {
+      width: 220px;
+    }
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .po-table {
+    width: 100%;
+
+    .amount-cell {
+      font-weight: 500;
+    }
+
+    .mat-column-actions {
+      width: 140px;
+      text-align: center;
+    }
+
+    .mat-column-totalAmount {
+      width: 140px;
+    }
+
+    .mat-column-items {
+      width: 80px;
+      text-align: center;
+    }
+  }
+
+  .status-draft {
+    background-color: #e0e0e0;
+    color: #616161;
+  }
+
+  .status-pending {
+    background-color: #fff3e0;
+    color: #e65100;
+  }
+
+  .status-approved {
+    background-color: #e3f2fd;
+    color: #1565c0;
+  }
+
+  .status-ordered {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .status-received {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+  }
+
+  .status-cancelled {
+    background-color: #ffebee;
+    color: #c62828;
+  }
+}

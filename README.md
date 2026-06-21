@@ -977,7 +977,7 @@ supplychain-ai-platform/
 │               └── db/migration/             # Flyway migrations
 │
 ├── 📂 frontend/
-│   └── 📂 supplychainpro-ui/          # Angular 18 SPA
+│   └── 📂 supplychainai-ui/          # Angular 18 SPA
 │       ├── src/app/
 │       │   ├── core/                   # Auth, API, Guards, Interceptors
 │       │   ├── layout/                 # Sidebar, Header
@@ -1458,7 +1458,7 @@ cd backend/admin-service
 ./mvnw test
 
 # Frontend tests
-cd frontend/supplychainpro-ui
+cd frontend/supplychainai-ui
 ng test
 
 # E2E validation
@@ -1526,7 +1526,7 @@ cd backend/ai-rag-service
 
 **Frontend:**
 ```bash
-cd frontend/supplychainpro-ui
+cd frontend/supplychainai-ui
 npm install
 ng serve  # Starts on http://localhost:4200
 ```

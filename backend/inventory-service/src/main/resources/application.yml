@@ -5,7 +5,7 @@ spring:
   application:
     name: inventory-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/supplychainpro?currentSchema=inventory_schema
+    url: jdbc:postgresql://postgres:5432/supplychainai?currentSchema=inventory_schema
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:SupplyChain@2024}
   jpa:
@@ -41,4 +41,4 @@ management:
 
 logging:
   level:
-    com.supplychainpro.inventory: DEBUG
+    com.supplychainai.inventory: DEBUG

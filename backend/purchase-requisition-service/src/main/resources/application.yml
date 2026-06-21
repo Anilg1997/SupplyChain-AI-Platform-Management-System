@@ -5,7 +5,7 @@ spring:
   application:
     name: purchase-requisition-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/supplychainpro?currentSchema=procurement_schema
+    url: jdbc:postgresql://postgres:5432/supplychainai?currentSchema=procurement_schema
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:SupplyChain@2024}
   jpa:
@@ -36,4 +36,4 @@ management:
 
 logging:
   level:
-    com.supplychainpro.pr: DEBUG
+    com.supplychainai.pr: DEBUG

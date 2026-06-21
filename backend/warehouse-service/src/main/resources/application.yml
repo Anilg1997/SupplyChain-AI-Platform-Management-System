@@ -5,7 +5,7 @@ spring:
   application:
     name: warehouse-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/supplychainpro?currentSchema=warehouse_schema
+    url: jdbc:postgresql://postgres:5432/supplychainai?currentSchema=warehouse_schema
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:SupplyChain@2024}
   jpa:
@@ -36,4 +36,4 @@ management:
 
 logging:
   level:
-    com.supplychainpro.warehouse: DEBUG
+    com.supplychainai.warehouse: DEBUG

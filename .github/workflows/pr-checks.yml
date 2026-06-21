@@ -91,22 +91,22 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
-          cache-dependency-path: frontend/supplychainpro-ui/package-lock.json
+          cache-dependency-path: frontend/supplychainai-ui/package-lock.json
 
       - name: Install dependencies
-        working-directory: frontend/supplychainpro-ui
+        working-directory: frontend/supplychainai-ui
         run: npm ci
 
       - name: Lint Angular code
-        working-directory: frontend/supplychainpro-ui
+        working-directory: frontend/supplychainai-ui
         run: npx ng lint 2>/dev/null || echo "⚠️ Lint completed"
 
       - name: Check TypeScript compilation
-        working-directory: frontend/supplychainpro-ui
+        working-directory: frontend/supplychainai-ui
         run: npx tsc --noEmit 2>/dev/null || echo "⚠️ TypeScript check completed"
 
       - name: Build Angular application
-        working-directory: frontend/supplychainpro-ui
+        working-directory: frontend/supplychainai-ui
         run: npm run build -- --configuration=production
 
   # ==========================================
@@ -136,11 +136,11 @@ jobs:
           context: ./backend/${{ matrix.service }}
           push: false
           load: true
-          tags: supplychainpro/${{ matrix.service }}:pr-${{ github.event.pull_request.number }}
+          tags: supplychainai/${{ matrix.service }}:pr-${{ github.event.pull_request.number }}
 
       - name: Verify image
         run: |
-          docker inspect supplychainpro/${{ matrix.service }}:pr-${{ github.event.pull_request.number }}
+          docker inspect supplychainai/${{ matrix.service }}:pr-${{ github.event.pull_request.number }}
           echo "✅ Docker image for ${{ matrix.service }} built successfully"
 
   # ==========================================

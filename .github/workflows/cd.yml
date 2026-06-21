@@ -18,7 +18,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_PREFIX: ${{ github.repository_owner }}/supplychainpro
+  IMAGE_PREFIX: ${{ github.repository_owner }}/supplychainai
 
 jobs:
   # ==========================================
@@ -123,21 +123,21 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-          cache-dependency-path: frontend/supplychainpro-ui/package-lock.json
+          cache-dependency-path: frontend/supplychainai-ui/package-lock.json
 
       - name: Install dependencies
-        working-directory: frontend/supplychainpro-ui
+        working-directory: frontend/supplychainai-ui
         run: npm ci
 
       - name: Build Angular application
-        working-directory: frontend/supplychainpro-ui
+        working-directory: frontend/supplychainai-ui
         run: npm run build -- --configuration=production
 
       - name: Upload frontend artifact
         uses: actions/upload-artifact@v4
         with:
           name: frontend-dist
-          path: frontend/supplychainpro-ui/dist/supplychainpro-ui/browser/
+          path: frontend/supplychainai-ui/dist/supplychainai-ui/browser/
           retention-days: 7
 
   # ==========================================
@@ -150,7 +150,7 @@ jobs:
     if: github.event.inputs.environment == 'staging' || (github.event_name == 'workflow_run' && github.ref == 'refs/heads/main')
     environment:
       name: staging
-      url: https://staging.supplychainpro.com
+      url: https://staging.supplychainai.com
 
     steps:
       - name: Checkout code
@@ -166,13 +166,13 @@ jobs:
           echo "4. Restart services with zero downtime"
           echo ""
           echo "Example commands:"
-          echo "ssh deploy@staging 'cd /opt/supplychainpro && docker-compose pull && docker-compose up -d'"
+          echo "ssh deploy@staging 'cd /opt/supplychainai && docker-compose pull && docker-compose up -d'"
 
       - name: Health check staging
         run: |
           echo "Checking staging health endpoints..."
           sleep 30
-          # curl -f https://staging.supplychainpro.com/actuator/health || exit 1
+          # curl -f https://staging.supplychainai.com/actuator/health || exit 1
 
       - name: Run smoke tests
         run: |
@@ -189,7 +189,7 @@ jobs:
     if: github.event.inputs.environment == 'production'
     environment:
       name: production
-      url: https://supplychainpro.com
+      url: https://supplychainai.com
 
     steps:
       - name: Checkout code

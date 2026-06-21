@@ -1,0 +1,97 @@
+.shipments-container {
+  padding: 24px;
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    .header-title {
+      font-size: 24px;
+      font-weight: 500;
+    }
+  }
+
+  .filter-bar {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    .search-field {
+      flex: 1;
+    }
+
+    .carrier-filter {
+      width: 220px;
+    }
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .shipments-table {
+    width: 100%;
+
+    .mat-column-actions {
+      width: 140px;
+      text-align: center;
+    }
+
+    .mat-column-progress {
+      width: 180px;
+    }
+
+    .progress-cell {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      mat-progress-bar {
+        flex: 1;
+        height: 8px;
+        border-radius: 4px;
+      }
+
+      .progress-text {
+        font-size: 13px;
+        font-weight: 500;
+        min-width: 36px;
+      }
+    }
+  }
+
+  .status-pending {
+    background-color: #e0e0e0;
+    color: #616161;
+  }
+
+  .status-transit {
+    background-color: #e3f2fd;
+    color: #1565c0;
+  }
+
+  .status-delivered {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .status-delayed {
+    background-color: #ffebee;
+    color: #c62828;
+  }
+
+  ::ng-deep .progress-complete .mat-progress-bar-fill {
+    background-color: #2e7d32;
+  }
+
+  ::ng-deep .progress-mid .mat-progress-bar-fill {
+    background-color: #1565c0;
+  }
+
+  ::ng-deep .progress-low .mat-progress-bar-fill {
+    background-color: #e65100;
+  }
+}

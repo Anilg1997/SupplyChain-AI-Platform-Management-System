@@ -1,0 +1,105 @@
+<div class="shipments-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title class="page-header">
+        <span class="header-title">Shipments</span>
+        <button mat-raised-button color="primary">
+          <mat-icon>add</mat-icon>
+          New Shipment
+        </button>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="filter-bar">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-label>Search</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Search by tracking ID, origin or destination">
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="carrier-filter">
+          <mat-label>Carrier</mat-label>
+          <mat-select (selectionChange)="applyCarrierFilter($event.value)">
+            <mat-option value="">All</mat-option>
+            <mat-option *ngFor="let carrier of carriers" [value]="carrier">{{ carrier }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="table-wrapper">
+        <table mat-table [dataSource]="dataSource" matSort class="shipments-table">
+          <ng-container matColumnDef="trackingId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tracking ID</th>
+            <td mat-cell *matCellDef="let shipment">{{ shipment.trackingId }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="origin">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Origin</th>
+            <td mat-cell *matCellDef="let shipment">{{ shipment.origin }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="destination">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Destination</th>
+            <td mat-cell *matCellDef="let shipment">{{ shipment.destination }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let shipment">
+              <mat-chip-set>
+                <mat-chip [class]="getStatusClass(shipment.status)" [disableRipple]="true">
+                  {{ shipment.status }}
+                </mat-chip>
+              </mat-chip-set>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="carrier">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Carrier</th>
+            <td mat-cell *matCellDef="let shipment">{{ shipment.carrier }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="estimatedDelivery">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Est. Delivery</th>
+            <td mat-cell *matCellDef="let shipment">{{ shipment.estimatedDelivery }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="progress">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Progress</th>
+            <td mat-cell *matCellDef="let shipment">
+              <div class="progress-cell">
+                <mat-progress-bar
+                  mode="determinate"
+                  [value]="shipment.progress"
+                  [class]="getProgressBarClass(shipment.progress)">
+                </mat-progress-bar>
+                <span class="progress-text">{{ shipment.progress }}%</span>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let shipment">
+              <button mat-icon-button color="primary" matTooltip="View">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="accent" matTooltip="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" matTooltip="Delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" [pageSize]="10" showFirstLastButtons></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>

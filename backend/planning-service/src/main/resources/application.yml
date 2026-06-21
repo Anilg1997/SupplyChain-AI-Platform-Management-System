@@ -5,7 +5,7 @@ spring:
   application:
     name: planning-service
   datasource:
-    url: jdbc:postgresql://postgres:5432/supplychainpro?currentSchema=planning_schema
+    url: jdbc:postgresql://postgres:5432/supplychainai?currentSchema=planning_schema
     username: ${POSTGRES_USER:postgres}
     password: ${POSTGRES_PASSWORD:SupplyChain@2024}
   jpa:
@@ -36,4 +36,4 @@ management:
 
 logging:
   level:
-    com.supplychainpro.planning: DEBUG
+    com.supplychainai.planning: DEBUG

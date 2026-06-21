@@ -8,7 +8,7 @@ spring:
     mongodb:
       host: mongodb
       port: 27017
-      database: supplychainpro
+      database: supplychainai
       username: ${MONGO_INITDB_ROOT_USERNAME:admin}
       password: ${MONGO_INITDB_ROOT_PASSWORD:Mongo@2024}
       authentication-database: admin
@@ -30,4 +30,4 @@ management:
 
 logging:
   level:
-    com.supplychainpro.catalog: DEBUG
+    com.supplychainai.catalog: DEBUG
