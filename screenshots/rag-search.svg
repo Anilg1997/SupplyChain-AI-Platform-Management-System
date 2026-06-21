@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="800" height="450" fill="#1e1e2e"/>
+  <text x="400" y="60" text-anchor="middle" fill="#cba6f7" font-size="28" font-weight="bold">AI RAG Search - SupplyChain AI Platform</text>
+  <rect x="50" y="90" width="700" height="45" rx="8" fill="#313244"/>
+  <text x="70" y="118" fill="#6c7086" font-size="16">Search documents, contracts, suppliers...</text>
+  <rect x="50" y="155" width="700" height="1" fill="#45475a"/>
+  <rect x="50" y="175" width="700" height="60" rx="6" fill="#313244"/>
+  <text x="70" y="198" fill="#cdd6f4" font-size="14" font-weight="bold">Supplier contracts for Q3 2024</text>
+  <text x="70" y="218" fill="#a6adc8" font-size="12">Found 3 results in supplier contracts, procurement documents, and RFQ records...</text>
+  <rect x="50" y="245" width="700" height="60" rx="6" fill="#313244"/>
+  <text x="70" y="268" fill="#cdd6f4" font-size="14" font-weight="bold">Quality inspection reports for incoming shipments</text>
+  <text x="70" y="288" fill="#a6adc8" font-size="12">Found 5 results in quality control documents, inspection records, and compliance docs...</text>
+  <rect x="50" y="315" width="700" height="60" rx="6" fill="#313244"/>
+  <text x="70" y="338" fill="#cdd6f4" font-size="14" font-weight="bold">Inventory optimization strategies with AI</text>
+  <text x="70" y="358" fill="#a6adc8" font-size="12">Found 2 results in inventory management guides, optimization algorithms...</text>
+  <rect x="50" y="395" width="160" height="35" rx="6" fill="#cba6f7"/>
+  <text x="130" y="418" text-anchor="middle" fill="#1e1e2e" font-size="13" font-weight="bold">Ask AI Assistant</text>
+</svg>

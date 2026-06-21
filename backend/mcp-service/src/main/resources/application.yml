@@ -1,0 +1,23 @@
+server:
+  port: 8110
+spring:
+  application:
+    name: mcp-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:kafka:29092}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_SERVER_URL:http://service-registry:8761/eureka/}
+  instance:
+    prefer-ip-address: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus,metrics
+mcp:
+  servers:
+    filesystem: ${MCP_SERVER_FILESYSTEM_ENABLED:true}
+    git: ${MCP_SERVER_GIT_ENABLED:true}
+    postgres: ${MCP_SERVER_POSTGRES_ENABLED:true}

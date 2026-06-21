@@ -29,27 +29,6 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
-# LangChain4j Configuration
-langchain4j:
-  ollama:
-    base-url: ${OLLAMA_BASE_URL:http://ollama:11434}
-    chat-model: ${OLLAMA_CHAT_MODEL:llama3.1}
-    embedding-model: ${OLLAMA_EMBEDDING_MODEL:nomic-embed-text}
-    timeout: 60s
-    max-retries: 3
-  rag:
-    enabled: true
-    retriever:
-      max-results: 5
-      min-score: 0.7
-    content-retriever:
-      max-tokens: 4000
-    query-transformer:
-      enabled: true
-
-# Spring AI Configuration
-spring:
   ai:
     ollama:
       base-url: ${OLLAMA_BASE_URL:http://ollama:11434}
